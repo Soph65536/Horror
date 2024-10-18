@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //constants
-    const float WalkingMoveSpeed = 5;
-    const float RunningMoveSpeed = 10;
+    const float WalkingMoveSpeed = 2;
+    const float RunningMoveSpeed = 5;
 
     const float JumpHeight = 5;
 
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float mouseX;
 
     Rigidbody rb;
+    Animator cameraAnimator;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
         //define rigidbody
         rb = transform.GetComponent<Rigidbody>();
+        //get animator from child
+        cameraAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,16 @@ public class PlayerMovement : MonoBehaviour
         
         //rotate player leftright with mouse input
         transform.Rotate(Vector3.up * mouseX * 360 * Time.deltaTime);
+
+        //set animation parameters
+        if(OnGround && vertical != 0)
+        {
+            cameraAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            cameraAnimator.SetBool("isWalking", false);
+        }
     }
 
     private void CharMove()

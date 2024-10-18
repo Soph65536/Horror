@@ -22,8 +22,5 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        //locks cursor on start
-        Cursor.lockState = CursorLockMode.Locked;
     }
 }
