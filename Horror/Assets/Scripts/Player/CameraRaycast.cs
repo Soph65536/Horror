@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CameraRaycast : MonoBehaviour
 {
-    const float interactrange = 5f;
+    const float interactrange = 2.5f;
 
     [SerializeField] private TextMeshProUGUI ObjectNameText;
 
