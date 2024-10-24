@@ -7,5 +7,6 @@ public class ResumeGameMenu : MonoBehaviour, IMenuButton
     public void OnButtonPress()
     {
         GameManager.Instance.InGameMenu = false;
+        GameManager.Instance.InInventory = false;
     }
 }
