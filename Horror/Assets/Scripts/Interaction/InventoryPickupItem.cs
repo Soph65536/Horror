@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryPickupItem : MonoBehaviour
+public class InventoryPickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private string objectName;
     [SerializeField] private InventoryObject inventoryObject;
@@ -12,7 +12,7 @@ public class InventoryPickupItem : MonoBehaviour
         return objectName;
     }
 
-    void Interact()
+    public void Interact()
     {
         GameObject.FindObjectOfType<InventorySystem>().PickupObject(inventoryObject);
         Destroy(gameObject);

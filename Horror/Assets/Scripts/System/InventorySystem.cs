@@ -28,7 +28,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         //add new object if doesn't already have one
-        if (!AlreadyHasObject) { Objects.Append(inventoryObject); }
+        if (!AlreadyHasObject) { Objects.Add(inventoryObject); }
     }
 
     public void DropObject()
@@ -36,7 +36,7 @@ public class InventorySystem : MonoBehaviour
         int selectedObject = InventoryMenu.selectedButton;
 
         //instantiate object and either decrease count or remove
-        Instantiate(Objects[selectedObject].objectPrefab);
+        Instantiate(Objects[selectedObject].objectPrefab, GameObject.FindGameObjectWithTag("Player").transform);
 
         if (Objects[selectedObject].objectCount > 1) 
         { 
