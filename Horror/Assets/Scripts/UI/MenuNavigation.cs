@@ -45,7 +45,7 @@ public class MenuNavigation : MonoBehaviour
             {
                 selectedButton++;
             }
-            else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.S))
+            else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
             {
                 selectedButton--;
             }

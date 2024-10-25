@@ -33,10 +33,13 @@ public class InventorySystem : MonoBehaviour
 
     public void DropObject()
     {
-        int selectedObject = InventoryMenu.selectedButton;
+        //return button counts as selected button so selected object is selected button - 1
+        int selectedObject = InventoryMenu.selectedButton - 1;
+        //find position to drop object
+        Vector3 dropPosition = GameObject.FindGameObjectWithTag("Player").transform.position - Vector3.down;
 
         //instantiate object and either decrease count or remove
-        Instantiate(Objects[selectedObject].objectPrefab, GameObject.FindGameObjectWithTag("Player").transform);
+        Instantiate(Objects[selectedObject].objectPrefab, dropPosition, Quaternion.identity);
 
         if (Objects[selectedObject].objectCount > 1) 
         { 
@@ -44,8 +47,11 @@ public class InventorySystem : MonoBehaviour
         }
         else
         {
-            Objects.RemoveAt(InventoryMenu.selectedButton);
+            Objects.RemoveAt(selectedObject);
         }
+
+        //leave inventory
+        GameManager.Instance.InInventory = false;
     }
 
     public void UpdateInventoryMenu()
