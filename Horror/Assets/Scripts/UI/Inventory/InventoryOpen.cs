@@ -19,7 +19,8 @@ public class InventoryOpen : MonoBehaviour
     {
         if (Input.GetKeyUp(InventoryKey)
            && !GameManager.Instance.InInventory
-           && !GameManager.Instance.InGameMenu)
+           && !GameManager.Instance.InGameMenu
+           && !GameManager.Instance.ViewingDocument)
         {
             GameManager.Instance.InInventory = true;
             //update the inventoy menu

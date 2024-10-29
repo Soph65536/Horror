@@ -14,12 +14,14 @@ public class CleanTextButton : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            GameManager.Instance.ViewingDocumentCleanText = false;
             CleanText.SetActive(false);
         }
     }
 
     public void ShowCleanText()
     {
+        GameManager.Instance.ViewingDocumentCleanText = true;
         CleanText.SetActive(true);
     }
 }

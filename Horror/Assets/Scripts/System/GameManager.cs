@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public bool InGameMenu;
     public bool InInventory;
 
+    public bool ViewingDocument;
+    public bool ViewingDocumentCleanText;
+
     void Awake()
     {
         //makes sure there is only one gamemanager instance and sets that instance to this
@@ -34,9 +37,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(InGameMenu ||  InInventory)
+        if(InGameMenu ||  InInventory || ViewingDocument)
         {
             Time.timeScale = 0;
+
+            if (ViewingDocument)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
         else
         {

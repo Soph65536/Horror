@@ -48,7 +48,7 @@ public class CameraRaycast : MonoBehaviour
                 ObjectNameText.text = hitObjectScript.GetName();
 
                 //if interact then call interact function
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log(hitObject);
                     hitObjectScript.Interact();
