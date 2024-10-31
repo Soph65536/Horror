@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public bool ViewingDocument;
     public bool ViewingDocumentCleanText;
 
+    public bool UsingKeypad;
+
     void Awake()
     {
         //makes sure there is only one gamemanager instance and sets that instance to this
@@ -33,11 +36,16 @@ public class GameManager : MonoBehaviour
 
         InGameMenu = false; 
         InInventory = false;
+
+        ViewingDocument = false;
+        ViewingDocumentCleanText = false;
+
+        UsingKeypad = false;
     }
 
     private void Update()
     {
-        if(InGameMenu ||  InInventory || ViewingDocument)
+        if(InGameMenu ||  InInventory || ViewingDocument || UsingKeypad)
         {
             Time.timeScale = 0;
 
@@ -47,7 +55,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //if no in main menu remove cursor
+                if(SceneManager.GetActiveScene().buildIndex != 0) { Cursor.lockState = CursorLockMode.Locked; }
             }
         }
         else

@@ -20,7 +20,8 @@ public class GameMenuOpen : MonoBehaviour
         if(Input.GetKeyUp(GameMenuKey)
            && !GameManager.Instance.InGameMenu 
            && !GameManager.Instance.InInventory
-           && !GameManager.Instance.ViewingDocument) 
+           && !GameManager.Instance.ViewingDocument
+           && !GameManager.Instance.UsingKeypad) 
         {
             GameManager.Instance.InGameMenu = true;
         }
