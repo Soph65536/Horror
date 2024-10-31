@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
 
-            if (ViewingDocument)
+            if (ViewingDocument || UsingKeypad)
             {
                 Cursor.lockState = CursorLockMode.Confined;
             }

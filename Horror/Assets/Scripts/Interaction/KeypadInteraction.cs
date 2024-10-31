@@ -22,8 +22,6 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
     private Quaternion CurrentRotationToLerpTo;
     private bool isLerpingToNewTransform;
 
-    private bool isUsingKeypad;
-
 
     private void Start()
     {
@@ -34,7 +32,6 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
         KeypadFocusRotation = Quaternion.identity;
 
         isLerpingToNewTransform = false;
-        isUsingKeypad = false;
     }
 
 
@@ -51,9 +48,10 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
         PlayerObject.transform.position = Vector3.Lerp(PlayerObject.transform.position, CurrentPositionToLerpTo, TransformMoveSpeed);
         PlayerObject.transform.rotation = Quaternion.Lerp(PlayerObject.transform.rotation, CurrentRotationToLerpTo, TransformMoveSpeed);
 
-        if (PlayerObject.transform.position == CurrentPositionToLerpTo && 
+        if (Vector3.Distance(PlayerObject.transform.position, CurrentPositionToLerpTo) > Vector3.kEpsilon && 
             PlayerObject.transform.rotation == CurrentRotationToLerpTo)
         {
+            //no longer lerping to new transform
             isLerpingToNewTransform = false;
         }
     }
@@ -62,7 +60,7 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
     private void Update()
     {
         //if using keyboard
-        if (isUsingKeypad)
+        if (GameManager.Instance.UsingKeypad)
         {
             //enable keyboard ui
             KeypadUI.SetActive(true);
@@ -79,19 +77,11 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
         {
             MovePlayerTransform();
         }
-
-        //change game manager after finished lerping
-        //so it doesn't immediately give player controls back
-        if(!isUsingKeypad && !isLerpingToNewTransform)
-        {
-            GameManager.Instance.UsingKeypad = false;
-        }
     }
 
     private void OpenKeypad()
     {
         //is using keypad
-        isUsingKeypad = true;
         GameManager.Instance.UsingKeypad = true;
 
         //store players current transform
@@ -111,7 +101,7 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
         SetNewTransform(PlayerPosition, PlayerRotation);
 
         //no longer using keypad
-        isUsingKeypad = false;
+        GameManager.Instance.UsingKeypad = false;
     }
 
 
