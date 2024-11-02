@@ -19,6 +19,6 @@ public class KeypadDisplay : MonoBehaviour
     void Update()
     {
         NumbersText.text = CurrentKeys;
-        if(CurrentKeys.Length > 6 ) { CurrentKeys = CurrentKeys.Substring(0, 6); }
+        if(CurrentKeys.Length > 4 ) { CurrentKeys = CurrentKeys.Substring(0, 4); }
     }
 }
