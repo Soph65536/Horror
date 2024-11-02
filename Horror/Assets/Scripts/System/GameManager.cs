@@ -53,15 +53,12 @@ public class GameManager : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Confined;
             }
-            else
-            {
-                //if no in main menu remove cursor
-                if(SceneManager.GetActiveScene().buildIndex != 0) { Cursor.lockState = CursorLockMode.Locked; }
-            }
         }
         else
         {
             Time.timeScale = TimeSpeed;
+            //if no in main menu remove cursor
+            if (SceneManager.GetActiveScene().buildIndex != 0) { Cursor.lockState = CursorLockMode.Locked; }
         }
     }
 }
