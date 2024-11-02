@@ -8,7 +8,7 @@ public class KeypadInteraction : MonoBehaviour, IInteractable
     //movement stuff for unlockwall
     const float KeypadMovement = 0.1f;
     const float KeypadDelay = 0.05f;
-    const float AmountForKeypadToMove = 6.5f;
+    const float AmountForKeypadToMove = 6.6f;
 
     const float TransformMoveSpeed = 0.01f;
 

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     const float WalkingMoveSpeed = 2;
     const float RunningMoveSpeed = 5;
 
-    const float JumpHeight = 5;
+    const float JumpHeight = 3.5f;
 
     //variables
     private bool OnGround;

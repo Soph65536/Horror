@@ -7,7 +7,7 @@ using UnityEngine.Device;
 public class KeyEnter : MonoBehaviour
 {
     const string CorrectKeys = "6662";
-    const float ResetDelay = 2.0f;
+    const float ResetDelay = 2f;
 
     [SerializeField] private KeypadDisplay KeypadDisplay;
     [SerializeField] private KeypadInteraction KeypadInteraction;
@@ -40,19 +40,23 @@ public class KeyEnter : MonoBehaviour
 
     private void CheckKeys(string keys)
     {
-        KeypadScreenNeutral.SetActive(false);
+        if (!ResettingKeypad)
+        {
+            KeypadScreenNeutral.SetActive(false);
 
-        if (keys == CorrectKeys)
-        {
-            ShowNewScreen(KeypadScreenGreen, CorrectSound);
-            
-            KeypadInteraction.StartCoroutine("UnlockWall");
-            KeypadInteraction.CloseKeypad();
-        }
-        else if(!ResettingKeypad)
-        {
-            ShowNewScreen(KeypadScreenRed, WrongSound);
-            StartCoroutine("ResetKeypad");
+            if (keys == CorrectKeys)
+            {
+                ShowNewScreen(KeypadScreenGreen, CorrectSound);
+
+                KeypadInteraction.StartCoroutine("UnlockWall");
+                StartCoroutine("ResetKeypad");
+                KeypadInteraction.CloseKeypad();
+            }
+            else
+            {
+                ShowNewScreen(KeypadScreenRed, WrongSound);
+                StartCoroutine("ResetKeypad");
+            }
         }
     }
 
@@ -67,9 +71,13 @@ public class KeyEnter : MonoBehaviour
     {
         ResettingKeypad = true;
 
-        yield return new WaitForSeconds(ResetDelay);
+        yield return new WaitForSecondsRealtime(ResetDelay);
+
         KeypadDisplay.CurrentKeys = string.Empty;
+
+        KeypadScreenGreen.SetActive(false);
         KeypadScreenRed.SetActive(false);
+
         KeypadScreenNeutral.SetActive(true);
 
         ResettingKeypad = false;
