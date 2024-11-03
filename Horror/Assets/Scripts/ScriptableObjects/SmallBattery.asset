@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5516d6a44aa40ea4b8f810b3d06b764a, type: 3}
+  m_Name: SmallBattery
+  m_EditorClassIdentifier: 
+  objectName: AA Battery
+  objectCount: 1
+  objectPrefab: {fileID: 2857578603764249650, guid: ee04c5b99ec88c042bebb0e333e4db9c, type: 3}

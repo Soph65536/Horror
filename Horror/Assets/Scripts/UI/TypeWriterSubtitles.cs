@@ -18,6 +18,11 @@ public class TypeWriterSubtitles : MonoBehaviour
         SubtitleText = GetComponent<TextMeshProUGUI>();
     }
 
+    public void changeTextColour(Color colour)
+    {
+        SubtitleText.color = colour;
+    }
+
     public IEnumerator TypeWriteText(string textString)
     {
         CurrentlyWritingText = true;
