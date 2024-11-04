@@ -5,9 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuGameMenu : MonoBehaviour, IMenuButton
 {
-    public void OnButtonPress()
+    public void OnEPress()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OnQPress()
+    {
+        //does nothing
+        return;
     }
 }

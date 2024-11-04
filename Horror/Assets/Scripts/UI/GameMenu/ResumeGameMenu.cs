@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class ResumeGameMenu : MonoBehaviour, IMenuButton
 {
-    public void OnButtonPress()
+    public void OnEPress()
     {
         GameManager.Instance.InGameMenu = false;
         GameManager.Instance.InInventory = false;
+    }
+
+    public void OnQPress()
+    {
+        //does nothing
+        return;
     }
 }

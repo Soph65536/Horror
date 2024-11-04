@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
@@ -12,6 +13,14 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private MenuNavigation InventoryMenu;
     [SerializeField] private GameObject MenuButton;
     [SerializeField] private GameObject ReturnButton;
+
+    private AudioSource PlayerAudioSource;
+    [SerializeField] private AudioClip UseItemSound;
+
+    private void Start()
+    {
+        PlayerAudioSource = GameObject.FindFirstObjectByType<PlayerMovement>().GetComponent<AudioSource>();
+    }
 
     public void PickupObject(InventoryObject inventoryObject)
     {
@@ -31,6 +40,27 @@ public class InventorySystem : MonoBehaviour
         if (!AlreadyHasObject) { Objects.Add(inventoryObject); }
     }
 
+    public void UseObject()
+    {
+        //return button counts as selected button so selected object is selected button - 1
+        int selectedObject = InventoryMenu.selectedButton - 1;
+
+        //either decrease object count or remove
+        if (Objects[selectedObject].objectCount > 1) 
+        { 
+            Objects[selectedObject].objectCount--;
+        }
+        else
+        {
+            Objects.RemoveAt(selectedObject);
+        }
+
+        PlayerAudioSource.PlayOneShot(UseItemSound);
+
+        //leave inventory
+        GameManager.Instance.InInventory = false;
+    }
+
     public void DropObject()
     {
         //return button counts as selected button so selected object is selected button - 1
@@ -41,8 +71,8 @@ public class InventorySystem : MonoBehaviour
         //instantiate object and either decrease count or remove
         Instantiate(Objects[selectedObject].objectPrefab, dropPosition, Quaternion.identity);
 
-        if (Objects[selectedObject].objectCount > 1) 
-        { 
+        if (Objects[selectedObject].objectCount > 1)
+        {
             Objects[selectedObject].objectCount--;
         }
         else

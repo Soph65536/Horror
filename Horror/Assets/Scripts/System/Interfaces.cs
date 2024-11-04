@@ -6,5 +6,6 @@ public interface IInteractable
 
 public interface IMenuButton
 {
-    void OnButtonPress();
+    void OnEPress();
+    void OnQPress();
 }

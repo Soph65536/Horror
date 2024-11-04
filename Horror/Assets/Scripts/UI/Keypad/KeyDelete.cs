@@ -8,6 +8,9 @@ public class KeyDelete : MonoBehaviour
 
     public void DeleteKey()
     {
-        KeypadDisplay.CurrentKeys = string.Empty;
+        if(KeypadDisplay.CurrentKeys != string.Empty)
+        {
+            KeypadDisplay.CurrentKeys = KeypadDisplay.CurrentKeys.Substring(0, KeypadDisplay.CurrentKeys.Length - 1);
+        }
     }
 }

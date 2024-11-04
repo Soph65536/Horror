@@ -34,7 +34,11 @@ public class MenuNavigation : MonoBehaviour
         //button selection
         if (Input.GetKeyUp(KeyCode.E))
         {
-            PressButton();
+            PressEButton();
+        }
+        else if (Input.GetKeyUp(KeyCode.Q))
+        {
+            PressQButton();
         }
 
         //check if there are multiple buttons, if not selected button is always 0
@@ -92,8 +96,13 @@ public class MenuNavigation : MonoBehaviour
 
     }
 
-    void PressButton()
+    void PressEButton()
     {
-        menuButtons[selectedButton].GetComponent<IMenuButton>().OnButtonPress();
+        menuButtons[selectedButton].GetComponent<IMenuButton>().OnEPress();
+    }
+
+    void PressQButton()
+    {
+        menuButtons[selectedButton].GetComponent<IMenuButton>().OnQPress();
     }
 }

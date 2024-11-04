@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ObjectInventoryMenu : MonoBehaviour, IMenuButton
 {
-    public void OnButtonPress()
+    public void OnEPress()
+    {
+        GameObject.FindObjectOfType<InventorySystem>().UseObject();
+    }
+
+    public void OnQPress()
     {
         GameObject.FindObjectOfType<InventorySystem>().DropObject();
     }

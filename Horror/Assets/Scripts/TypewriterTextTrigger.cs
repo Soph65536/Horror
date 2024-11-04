@@ -63,8 +63,9 @@ public class TypewriterTextTrigger : MonoBehaviour
     private IEnumerator EndGame()
     {
         EndingGame = true;
-        yield return new WaitForSeconds(13f);
+        yield return new WaitForSeconds(11f);
         audioSource.PlayOneShot(EndingSound);
+        Destroy(audioSource.gameObject.GetComponent<PlayerMovement>());
         audioSource.gameObject.GetComponentInChildren<Animator>().SetTrigger("Ending");
         yield return new WaitForSeconds(5f);
 
